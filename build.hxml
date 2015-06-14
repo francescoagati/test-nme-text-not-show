@@ -1,0 +1,4 @@
+-cp Source
+-lib actuate openfl swf lime
+-neko trash/x.n
+-main Main

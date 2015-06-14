@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+	<meta title="Project" package="com.sample.project" version="1.0.0" company="Company Name" />
+	<app main="Main" path="Export" file="Project" />
+
+	<source path="Source" />
+	<window width="800" height="600" background="#000000" fps="60" />
+	<haxelib name="openfl" />
+	<haxelib name="swf" preload="true" />
+	<haxelib name="actuate" preload="true" />
+	<assets path="Assets" rename="assets"  />
+	<icon path="Assets/openfl.svg|*.swf" />
+
+</project>
