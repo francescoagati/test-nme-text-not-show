@@ -11,5 +11,6 @@
 	<haxelib name="actuate" preload="true" />
 	<assets path="Assets" rename="assets"  />
 	<icon path="Assets/openfl.svg|*.swf" />
-
+	<haxeflag name="-dce full" if="html5" />
+	<haxeflag name="-D analyzer full" if="html5" />
 </project>

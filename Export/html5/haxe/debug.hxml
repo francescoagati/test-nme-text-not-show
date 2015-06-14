@@ -18,6 +18,8 @@
 -D html5
 -D web
 --remap flash:openfl
+-dce full
+-D analyzer full
 -js Export/html5/bin/Project.js
 -cp Export/html5/haxe
 -D html5
