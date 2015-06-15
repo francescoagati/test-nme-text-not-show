@@ -5,9 +5,20 @@
 	<app main="Main" path="Export" file="Project" />
 
 	<source path="Source" />
-	<window width="800" height="600" background="#000000" fps="60" />
+	<window width="800" height="600" background="#000000" fps="60" if="html5"/>
+	<window
+		hardware="true"
+		allow-shaders="true"
+		require-shaders="true"
+		depth-buffer="true"
+		stencil-buffer="true"
+		width="800"
+		height="600"
+		background="#000000"
+		fps="60" if="linux"/>
+
+
 	<haxelib name="openfl" />
-	<haxelib name="swf" preload="true" />
 	<haxelib name="actuate" preload="true" />
 	<assets path="Assets" rename="assets"  />
 	<icon path="Assets/openfl.svg|*.swf" />

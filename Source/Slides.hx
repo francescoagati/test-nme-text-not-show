@@ -1,8 +1,12 @@
+using StringTools;
 typedef ListSlides = Array<String>;
 
 @:forward abstract AListSlides(ListSlides) from ListSlides to ListSlides {
    public inline function new(list:ListSlides) this = list;
-   @:op(A << B) public inline function addSlide(slide:String) this.push(slide);
+   @:op(A << B) public inline function addSlide(slide:String) {
+     //var rg =  ~/\s+/gi;
+     this.push(slide.trim());
+  }
 }
 
 class Slides {
@@ -39,185 +43,210 @@ class Slides {
       slides = [];
 
       slides << "
-        HAXE
-        THE CROSS LANGUAGE TOOLKIT
+HAXE
+THE CROSS LANGUAGE TOOLKIT
       ";
 
       slides << "
-        Creato nel 2005
-        da
-        Nicolas Canasse
+Creato nel 2005
+da
+Nicolas Canasse
       ";
 
       slides << "
-        OOP
-        Modello a oggetto simile a java
-        Classi,interface,metodi statici...
+OOP
+Modello a oggetto simile a java
+Classi,interface,metodi statici...
       ";
 
       slides << "
-        SINTASSI C LIKE
-        Sintassi simile a c+,java,javascript...
+SINTASSI C LIKE
+Sintassi simile a c+,java,javascript...
       ";
 
       slides << "
-        OOP
-        Modello a oggetti simile a java
-        Classi,interface,metodi statici...
+OOP
+Modello a oggetti simile a java
+Classi,interface,metodi statici...
       ";
 
       slides << "
-        CLOSURE
-        Funzioni anonime e closure
+CLOSURE
+Funzioni anonime e closure
       ";
 
       slides << "
-        STRING INTERPOLATION
-        come in php
-        '$x + $y'
-      ";
-
-
-      slides << "
-        STRICTLY TYPED
-        Type System statico
-        con Type Inference
-      ";
-
-      slides << "
-        DYNAMICS
-        oggetti dinamici
-        senza type checking
-      ";
-
-      slides << "
-        EXTERNS
-        permettono di mappare librerie esterne
-        con il type system
+STRING INTERPOLATION
+come in php
+'$x + $y'
       ";
 
 
       slides << "
-        TYPES
-        supporta tipi
-        tramite typedef (simile alle strutture in c)
-        e tipi anonimi
+STRICTLY TYPED
+Type System statico
+con Type Inference
       ";
 
       slides << "
-        ABSTRACT TYPES
-        Definizione di tipi astratti
-        esistenti solo a compile type
-      ";
-
-
-      slides << "
-        ABSTRACT TYPES
-        Operator Overloading, Array Access,
-        Method forwarding, Implicit Cast
+DYNAMICS
+oggetti dinamici
+senza type checking
       ";
 
       slides << "
-        STATIC ESTENSION
-        Estende gli oggetti a compile time
-        senza bisogno di ereditarietà
-      ";
-
-      slides << "
-        INLINE
-        inlining di funzioni e costruttori
-        permette maggiori prestazioni
-      ";
-
-      slides << "
-        MACRO SYSTEM
-        Permette di generare codice
-        a compile time
-        utile per scrivere dsl
-      ";
-
-      slides << "
-        MACRO SYSTEM
-        si integra con il type system
-        il compilatore controlla
-        la validità del codice
+EXTERNS
+permettono di mappare librerie esterne
+con il type system
       ";
 
 
       slides << "
-        NEKO
-        la VM in cui viene eseguito
-        il codice Haxe compilato
-        in byte code
+TYPES
+supporta tipi
+tramite typedef (simile alle strutture in c)
+e tipi anonimi
       ";
 
       slides << "
-        NEKO
-        utile per eseguirlo serve side
-        oppure....
+ABSTRACT TYPES
+Definizione di tipi astratti
+esistenti solo a compile type
+      ";
+
+
+      slides << "
+ABSTRACT TYPES
+Operator Overloading, Array Access,
+Method forwarding, Implicit Cast
       ";
 
       slides << "
-        HAXE
-        Può compilare anche in....
+STATIC ESTENSION
+Estende gli oggetti a compile time
+senza bisogno di ereditarietà
       ";
 
       slides << "
-        1. NEKO
+INLINE
+inlining di funzioni e costruttori
+permette maggiori prestazioni
       ";
 
       slides << "
-        2. JAVASCRIPT
+MACRO SYSTEM
+Permette di generare codice
+a compile time
+utile per scrivere dsl
       ";
 
       slides << "
-        3. FLASH
+MACRO SYSTEM
+si integra con il type system
+il compilatore controlla
+la validità del codice
       ";
 
       slides << "
-        4. PHP
+STANDARD CORE LIBRARY
+Simili a core java e javascript
+      ";
+
+      slides << "
+XML e JSON
+nella core library
+      ";
+
+      slides << "
+REMOTING 
+RPC per comunicazione simile a SOAP
+      ";
+
+      slides << "
+REFLECTION
+Per ispezionare a runtime gli oggetti
+      ";
+
+      slides << "
+METADATA
+Simile alle annotations java
+      ";
+
+
+      slides << "
+NEKO
+la VM in cui viene eseguito
+il codice Haxe compilato
+in byte code
+      ";
+
+      slides << "
+NEKO
+utile per eseguirlo serve side
+oppure....
+      ";
+
+      slides << "
+HAXE
+Può compilare anche in....
+      ";
+
+      slides << "
+1. NEKO
+      ";
+
+      slides << "
+2. JAVASCRIPT
+      ";
+
+      slides << "
+3. FLASH
+      ";
+
+      slides << "
+4. PHP
       ";
       slides << "
-        5. C++
+5. C++
       ";
 
        slides << "
-        6. JAVA
+6. JAVA
        ";
 
        slides << "
-        7. C#
+7. C#
        ";
 
        slides << "
-        8. PYTHON
+8. PYTHON
        ";
 
        slides << "
-        9. LUA (experimental)
+9. LUA (experimental)
        ";
 
        slides <<  "
-        10. RUBY (experimental)
+10. RUBY (experimental)
        ";
        slides <<  "
-        11. SWIFT (work in progress...)
+11. SWIFT (work in progress...)
        ";
 
        slides << "
-        HAXE
-        permette di scrivere codice
-        client side,server side e
-        mobile/desktop nativo
+HAXE
+permette di scrivere codice
+client side,server side e
+mobile/desktop nativo
        ";
 
 
        slides <<  "
-        HAXE
-        Utilizzato soprattutto
-        per scrivere giochi compilati
-        in HTML5, FLASH e
-        MOBILE/DESKTOP/CONSOLE
+HAXE
+Utilizzato soprattutto
+per scrivere giochi compilati
+in HTML5, FLASH e
+MOBILE/DESKTOP/CONSOLE
        ";
 
 

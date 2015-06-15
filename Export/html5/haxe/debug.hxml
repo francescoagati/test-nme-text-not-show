@@ -3,10 +3,8 @@
 -D openfl=3.1.0
 -cp /usr/lib/haxe/lib/lime/2,4,4
 -D lime=2.4.4
--cp /usr/lib/haxe/lib/swf/1,8,8
--D swf=1.8.8
--cp /usr/lib/haxe/lib/actuate/1,8,3
--D actuate=1.8.3
+-cp /usr/lib/haxe/lib/actuate/1,8,6
+-D actuate=1.8.6
 -cp Source
 -D openfl-next
 -D tools=2.4.4

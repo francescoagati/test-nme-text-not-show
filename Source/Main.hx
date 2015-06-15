@@ -36,40 +36,34 @@ class Main extends Sprite {
 
 		bitmap.width = 400;
 		bitmap.height = 400;
-		bitmap.x = 200;
+		bitmap.x = 0;
 		bitmap.y = 50; //(stage.height - bitmap.height) / 2;
 		bitmap.alpha = .5;
 
 
-		Actuate.tween (bitmap, 5, { alpha: 1,y:-460 }).repeat().reflect();
+		Actuate.tween (bitmap, 3, { alpha: 1,y:-560 }).repeat().reflect();
 
 		slides = new Slides();
 
-		haxe.Timer.delay(function() {
 
-			var messageFormat:TextFormat = new TextFormat("Verdana", 22, 0xffffff, true);
-			messageFormat.align = TextFormatAlign.CENTER;
+			var messageFormat:TextFormat = new TextFormat("Verdana", 24, 0xffffff, true);
+			messageFormat.align = TextFormatAlign.LEFT;
 
 			messageField = new TextField();
 
 			messageField.width = 800;
 			messageField.height = 200;
-			messageField.x = -10;
+			messageField.x = 100;
 			messageField.y = 150; //(stage.height - messageField.height) / 2;
 
 			messageField.defaultTextFormat = messageFormat;
 			messageField.selectable = false;
-			messageField.text = "
-				HAXE
-				THE CROSS PLATFORM TOOLKIT
-			";
+			messageField.text = "HAXE\nTHE CROSS PLATFORM TOOLKIT";
 
-			setChildIndex(messageField, 2);
 			addChild(bitmap);
 			addChild(messageField);
 
 
-		},0);
 
 
 		stage.addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
