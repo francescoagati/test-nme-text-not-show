@@ -56,19 +56,14 @@ Nicolas Canasse
       slides << "
 OOP
 Modello a oggetto simile a java
-Classi,interface,metodi statici...
+Classi, interface, metodi statici...
       ";
 
       slides << "
 SINTASSI C LIKE
-Sintassi simile a c+,java,javascript...
+Sintassi simile a c+, java, javascript...
       ";
 
-      slides << "
-OOP
-Modello a oggetti simile a java
-Classi,interface,metodi statici...
-      ";
 
       slides << "
 CLOSURE
@@ -95,11 +90,25 @@ senza type checking
       ";
 
       slides << "
+Untyped
+blocchi di codice in cui
+il type checking è disabilitato
+      ";
+
+
+
+
+      slides << "
 EXTERNS
 permettono di mappare librerie esterne
 con il type system
       ";
 
+      slides << "
+Magic variables
+comandi che permettono di aprire finestre
+dove poter inserire codice nativo
+      ";
 
       slides << "
 TYPES
@@ -121,9 +130,11 @@ Operator Overloading, Array Access,
 Method forwarding, Implicit Cast
       ";
 
+
+
       slides << "
 STATIC ESTENSION
-Estende gli oggetti a compile time
+Estende oggetti e classi a compile time
 senza bisogno di ereditarietà
       ";
 
@@ -132,6 +143,25 @@ INLINE
 inlining di funzioni e costruttori
 permette maggiori prestazioni
       ";
+
+
+      slides << "
+ENUM (Algebrical Data Type)
+Enumeration con e senza parametri
+      ";
+
+      slides << "
+GENERICS
+Permette di generare codice per ogni
+singolo generic definito
+      ";
+
+      slides << "
+Pattern Matching
+su enum,array e tipi
+(type checking compile time)
+      ";
+
 
       slides << "
 MACRO SYSTEM
@@ -147,6 +177,66 @@ il compilatore controlla
 la validità del codice
       ";
 
+
+      slides << "
+MACRO SYSTEM AUTOBUILD
+manipolano le classi dinamicamente
+aggiungendo e modificand metodi
+      ";
+
+      slides << "
+MACRO SYSTEM GENERICS BUILD
+creazione di nuovi tipi e classi
+tramite le macro
+      ";
+
+      slides << "
+MACRO REIFICATION
+scrittura di macro con \"templating\"
+simili a lisp macro
+      ";
+
+      slides << "
+MACRO REIFICATION
+pattern matching con reification
+simili a pattern based macros di SCHEME
+      ";
+
+      slides << "
+METADATA
+Simile alle annotations java
+      ";
+
+
+      slides << "
+METADATA MACRO
+processate dalle macro
+non vengono esportate a runtime
+      ";
+
+      slides << "
+FLAG SYSTEM
+Permette di definire dei flag di compilazione
+da utilizare tramite un macro linguaggio
+simili a preprocessori c
+      ";
+
+
+      slides << "
+STATIC ANALYZER
+analizza il codice per incrementarne
+le prestazioni
+      ";
+
+
+      slides << "
+BUILD SYSTEM
+basato su file permette di creare
+piu' build e di lanciare comandi
+dopo la compilazione
+      ";
+
+
       slides << "
 STANDARD CORE LIBRARY
 Simili a core java e javascript
@@ -158,9 +248,28 @@ nella core library
       ";
 
       slides << "
-REMOTING 
+REMOTING
 RPC per comunicazione simile a SOAP
       ";
+
+      slides << "
+REMOTING PROXY
+Crea proxy sincroni e asincroni
+di una classe
+      ";
+
+      slides << "
+SPOD
+ORM SQL con type checking
+e macro DSL per query
+      ";
+
+      slides << "
+WEB DISPATCHER
+Url router con validazione uri
+con type system
+      ";
+
 
       slides << "
 REFLECTION
@@ -168,8 +277,17 @@ Per ispezionare a runtime gli oggetti
       ";
 
       slides << "
-METADATA
-Simile alle annotations java
+HSCRIPT
+interprete haxe in haxe (subset)
+utile per debuggare codice a runtime
+senza ricompilare
+      ";
+
+
+      slides << "
+SERIALIZER
+Serializer con mantenimento
+informazioni sui tipi
       ";
 
 
@@ -247,6 +365,64 @@ Utilizzato soprattutto
 per scrivere giochi compilati
 in HTML5, FLASH e
 MOBILE/DESKTOP/CONSOLE
+       ";
+
+
+       slides <<  "
+NME
+porting della Flash Api
+su nativo c++
+IOS/ANDROID/WMOBILE/LINUX/MAC
+ANDROID e IOS View
+       ";
+
+
+
+       slides <<  "
+OPENFL
+fork di NME (compatibili)
+con backend modulari
+NME + HTML5 + CONSOLE
+       ";
+
+
+       slides <<  "
+STABLEXUI/HAXEUI/JIVE
+UI framework per openfl
+uso di XML per definire interfacce
+       ";
+
+       slides <<  "
+STABLEXUI/HAXEUI/JIVE
+XML e codice possono essere
+processati a runtime (fast reload)
+o a compiletime con macro system
+       ";
+
+       slides <<  "
+HAXEFIXEL/HAXEPUNK
+Framework per creare giochi
+con OPENFL
+       ";
+
+       slides <<  "
+FLAMBLE
+Framework per creare giochi
+con adobe air
+       ";
+
+
+       slides <<  "
+HAXELIB
+comand per gestire le librerie
+e le dipendenze
+come npm,rubygems,...
+       ";
+
+       slides <<  "
+try.haxe.org
+sito per testare online haxe
+(macro bloccate per security)
        ";
 
 

@@ -45,17 +45,41 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
+		className.set ("assets/serif.woff", __ASSET__assets_serif_woff);
+		type.set ("assets/serif.woff", AssetType.BINARY);
+		className.set ("assets/serif.eot", __ASSET__assets_serif_eot);
+		type.set ("assets/serif.eot", AssetType.BINARY);
 		className.set ("assets/haxe.png", __ASSET__assets_haxe_png);
 		type.set ("assets/haxe.png", AssetType.IMAGE);
+		className.set ("assets/serif.svg", __ASSET__assets_serif_svg);
+		type.set ("assets/serif.svg", AssetType.TEXT);
+		className.set ("assets/serif.ttf", __ASSET__assets_serif_ttf);
+		type.set ("assets/serif.ttf", AssetType.FONT);
 		
 		
 		#elseif html5
 		
 		var id;
+		id = "assets/serif.woff";
+		path.set (id, id);
+		
+		type.set (id, AssetType.BINARY);
+		id = "assets/serif.eot";
+		path.set (id, id);
+		
+		type.set (id, AssetType.BINARY);
 		id = "assets/haxe.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
+		id = "assets/serif.svg";
+		path.set (id, id);
+		
+		type.set (id, AssetType.TEXT);
+		id = "assets/serif.ttf";
+		className.set (id, __ASSET__assets_serif_ttf);
+		
+		type.set (id, AssetType.FONT);
 		
 		
 		var assetsPrefix = ApplicationMain.config.assetsPrefix;
@@ -71,14 +95,30 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_serif_ttf);
+		
 		#end
 		
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
 		
+		className.set ("assets/serif.woff", __ASSET__assets_serif_woff);
+		type.set ("assets/serif.woff", AssetType.BINARY);
+		
+		className.set ("assets/serif.eot", __ASSET__assets_serif_eot);
+		type.set ("assets/serif.eot", AssetType.BINARY);
+		
 		className.set ("assets/haxe.png", __ASSET__assets_haxe_png);
 		type.set ("assets/haxe.png", AssetType.IMAGE);
+		
+		className.set ("assets/serif.svg", __ASSET__assets_serif_svg);
+		type.set ("assets/serif.svg", AssetType.TEXT);
+		
+		className.set ("assets/serif.ttf", __ASSET__assets_serif_ttf);
+		type.set ("assets/serif.ttf", AssetType.FONT);
 		
 		
 		if (useManifest) {
@@ -680,12 +720,20 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if !display
 #if flash
 
+@:keep @:bind #if display private #end class __ASSET__assets_serif_woff extends null { }
+@:keep @:bind #if display private #end class __ASSET__assets_serif_eot extends null { }
 @:keep @:bind #if display private #end class __ASSET__assets_haxe_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_serif_svg extends null { }
+@:keep @:bind #if display private #end class __ASSET__assets_serif_ttf extends null { }
 
 
 #elseif html5
 
 
+
+
+
+@:keep #if display private #end class __ASSET__assets_serif_ttf extends lime.text.Font { public function new () { super (); name = "Katamotz Ikasi"; } } 
 
 
 #else
@@ -695,13 +743,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if (windows || mac || linux)
 
 
+@:file("Assets/serif.woff") #if display private #end class __ASSET__assets_serif_woff extends lime.utils.ByteArray {}
+@:file("Assets/serif.eot") #if display private #end class __ASSET__assets_serif_eot extends lime.utils.ByteArray {}
 @:image("Assets/haxe.png") #if display private #end class __ASSET__assets_haxe_png extends lime.graphics.Image {}
+@:file("Assets/serif.svg") #if display private #end class __ASSET__assets_serif_svg extends lime.utils.ByteArray {}
+@:font("Assets/serif.ttf") #if display private #end class __ASSET__assets_serif_ttf extends lime.text.Font {}
 
 
 
 #end
 
 #if openfl
+@:keep #if display private #end class __ASSET__OPENFL__assets_serif_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__assets_serif_ttf (); src = font.src; name = font.name; super (); }}
 
 #end
 

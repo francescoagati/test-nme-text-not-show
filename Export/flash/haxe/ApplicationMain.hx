@@ -1,238 +1,231 @@
-#if !macro
+// Might have waxe without NME
+#if nme
+import nme.Assets;
+#elseif waxe
+import wx.Assets;
+#end
 
-
-@:access(lime.Assets)
-
-
-class ApplicationMain {
-	
-	
-	public static var config:lime.app.Config;
-	public static var preloader:openfl.display.Preloader;
-	
-	
-	public static function create ():Void {
-		
-		var app = new lime.app.Application ();
-		app.create (config);
-		openfl.Lib.application = app;
-		
-		#if !flash
-		var stage = new openfl.display.Stage (app.window.width, app.window.height, config.background);
-		stage.addChild (openfl.Lib.current);
-		app.addModule (stage);
-		#end
-		
-		var display = new NMEPreloader ();
-		
-		preloader = new openfl.display.Preloader (display);
-		preloader.onComplete = init;
-		preloader.create (config);
-		
-		#if (js && html5)
-		var urls = [];
-		var types = [];
-		
-		
-		urls.push ("assets/haxe.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		
-		if (config.assetsPrefix != null) {
-			
-			for (i in 0...urls.length) {
-				
-				if (types[i] != lime.Assets.AssetType.FONT) {
-					
-					urls[i] = config.assetsPrefix + urls[i];
-					
-				}
-				
-			}
-			
-		}
-		
-		preloader.load (urls, types);
-		#end
-		
-		var result = app.exec ();
-		
-		#if (sys && !nodejs && !emscripten)
-		Sys.exit (result);
-		#end
-		
-	}
-	
-	
-	public static function init ():Void {
-		
-		var loaded = 0;
-		var total = 0;
-		var library_onLoad = function (__) {
-			
-			loaded++;
-			
-			if (loaded == total) {
-				
-				start ();
-				
-			}
-			
-		}
-		
-		preloader = null;
-		
-		
-		
-		if (loaded == total) {
-			
-			start ();
-			
-		}
-		
-	}
-	
-	
-	public static function main () {
-		
-		config = {
-			
-			antialiasing: Std.int (0),
-			background: Std.int (16777215),
-			borderless: false,
-			company: "Company Name",
-			depthBuffer: false,
-			file: "Project",
-			fps: Std.int (30),
-			fullscreen: false,
-			hardware: true,
-			height: Std.int (600),
-			orientation: "",
-			packageName: "com.sample.project",
-			resizable: true,
-			stencilBuffer: true,
-			title: "Project",
-			version: "1.0.0",
-			vsync: false,
-			width: Std.int (800),
-			
-		}
-		
-		#if (js && html5)
-		#if (munit || utest)
-		openfl.Lib.embed (null, 800, 600, "FFFFFF");
-		#end
-		#else
-		create ();
-		#end
-		
-	}
-	
-	
-	public static function start ():Void {
-		
-		var hasMain = false;
-		var entryPoint = Type.resolveClass ("Main");
-		
-		for (methodName in Type.getClassFields (entryPoint)) {
-			
-			if (methodName == "main") {
-				
-				hasMain = true;
-				break;
-				
-			}
-			
-		}
-		
-		lime.Assets.initialize ();
-		
-		if (hasMain) {
-			
-			Reflect.callMethod (entryPoint, Reflect.field (entryPoint, "main"), []);
-			
-		} else {
-			
-			var instance:DocumentClass = Type.createInstance (DocumentClass, []);
-			
-			/*if (Std.is (instance, openfl.display.DisplayObject)) {
-				
-				openfl.Lib.current.addChild (cast instance);
-				
-			}*/
-			
-		}
-		
-		openfl.Lib.current.stage.dispatchEvent (new openfl.events.Event (openfl.events.Event.RESIZE, false, false));
-		
-	}
-	
-	
-	#if neko
-	@:noCompletion public static function __init__ () {
-		
-		var loader = new neko.vm.Loader (untyped $loader);
-		loader.addPath (haxe.io.Path.directory (Sys.executablePath ()));
-		loader.addPath ("./");
-		loader.addPath ("@executable_path/");
-		
-	}
-	#end
-	
-	
-}
-
-
-@:build(DocumentClass.build())
-@:keep class DocumentClass extends Main {}
-
-
-#else
-
-
-import haxe.macro.Context;
-import haxe.macro.Expr;
-
-
-class DocumentClass {
-	
-	
-	macro public static function build ():Array<Field> {
-		
-		var classType = Context.getLocalClass ().get ();
-		var searchTypes = classType;
-		
-		while (searchTypes.superClass != null) {
-			
-			if (searchTypes.pack.length == 2 && searchTypes.pack[1] == "display" && searchTypes.name == "DisplayObject") {
-				
-				var fields = Context.getBuildFields ();
-				
-				var method = macro {
-					
-					openfl.Lib.current.addChild (this);
-					super ();
-					dispatchEvent (new openfl.events.Event (openfl.events.Event.ADDED_TO_STAGE, false, false));
-					
-				}
-				
-				fields.push ({ name: "new", access: [ APublic ], kind: FFun({ args: [], expr: method, params: [], ret: macro :Void }), pos: Context.currentPos () });
-				
-				return fields;
-				
-			}
-			
-			searchTypes = searchTypes.superClass.t.get ();
-			
-		}
-		
-		return null;
-		
-	}
-	
-	
-}
-
+#if cpp
 
 #end
+
+
+
+#if iosview
+@:buildXml("
+<files id='__lib__'>
+  <file name='FrameworkInterface.mm'>
+  </file>
+</files>
+")
+#end
+@:cppFileCode("
+ 
+")
+class ApplicationMain
+{
+   static public var engines : Array<Dynamic> = [
+      
+   ];
+
+
+   #if waxe
+   static public var frame : wx.Frame;
+   static public var autoShowFrame : Bool = true;
+   #if nme
+   static public var nmeStage : wx.NMEStage;
+   #end
+   #end
+   
+   public static function main()
+   {
+      #if cpp
+      
+      #end
+
+
+      #if flash
+
+      nme.AssetData.create();
+
+      #elseif nme
+
+      
+
+      nme.app.Application.setPackage("Company Name", "Project", "com.sample.project", "1.0.0");
+      nme.text.Font.useNative = true;
+
+      nme.AssetData.create();
+
+      
+
+      nme.app.Application.setFixedOrientation(
+         
+            nme.app.Application.OrientationAny
+          
+      );
+
+      #end
+   
+
+   
+      #if flash
+      flash.Lib.current.stage.align = flash.display.StageAlign.TOP_LEFT;
+      flash.Lib.current.stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
+
+      var load = function() ApplicationBoot.createInstance();
+
+      
+         new nme.preloader.Basic(800, 600, 16777215, load);
+      
+
+
+      #elseif waxe
+
+      #if nme
+      nme.display.ManagedStage.initSdlAudio();
+      #end
+
+      if (ApplicationBoot.canCallMain())
+         ApplicationBoot.createInstance();
+      else
+      {
+         wx.App.boot(function()
+         {
+            var size = { width: 800, height: 600 };
+            
+               frame = wx.Frame.create(null, null, "Project", null, size);
+            
+
+            #if nme
+               wx.NMEStage.create(frame, null, null,
+               {
+                  width: 800,
+                  height: 600,
+                  fullscreen: false,
+                  stencilBuffer: false,
+                  depthBuffer: false,
+                  antiAliasing: 0,
+                  resizable: true,
+                  vsync: false,
+                  fps : 30 * 1.0,
+                  color : 16777215,
+                  title : "Project",
+                  icon  : Assets.info.get("null")==null ? null : getAsset("null")
+               });
+
+               // Show frame before creating instance so context is good.
+               frame.shown = true;
+               ApplicationBoot.createInstance();
+               wx.App.setTopWindow(frame);
+   
+            #else
+               ApplicationBoot.createInstance();
+               if (autoShowFrame)
+               {
+                  wx.App.setTopWindow(frame);
+                  frame.shown = true;
+               }
+            #end
+
+        });
+      }
+      #elseif cppia
+       ApplicationBoot.createInstance();
+      #else
+         var flags:Int = 
+            (true ? nme.app.Application.HARDWARE : 0) |
+            (false ? nme.app.Application.DEPTH_BUFFER : 0) |
+            (false ? nme.app.Application.STENCIL_BUFFER : 0) |
+            (true ? nme.app.Application.RESIZABLE : 0) |
+            (false ? nme.app.Application.BORDERLESS : 0) |
+            (false ? nme.app.Application.VSYNC : 0) |
+            (false ? nme.app.Application.FULLSCREEN : 0) |
+            (0 == 4 ? nme.app.Application.HW_AA_HIRES : 0) |
+            (0 == 2 ? nme.app.Application.HW_AA : 0);
+
+
+         #if nme_application
+
+            var params = { flags : flags,
+               fps : 30 * 1.0,
+               color : 16777215,
+               width : 800,
+               height : 600,
+               title : "Project",
+               icon  : Assets.info.get("null")==null ? null : getAsset("null")
+            };
+
+            nme.app.Application.createWindow(function(window:nme.app.Window) {
+               new Main(window);
+            }, params );
+
+         #else
+
+            nme.Lib.create(function() { 
+                  nme.Lib.current.stage.align = nme.display.StageAlign.TOP_LEFT;
+                  nme.Lib.current.stage.scaleMode = nme.display.StageScaleMode.NO_SCALE;
+                  nme.Lib.current.loaderInfo = nme.display.LoaderInfo.create (null);
+                  ApplicationBoot.createInstance();
+               },
+               800, 600, 
+               30, 
+               16777215,
+               flags,
+               "Project"
+               
+            );
+
+         #end
+      #end
+   }
+
+   @:keep function keepMe() return Reflect.callMethod;
+
+   public static function setAndroidViewHaxeObject(inObj:Dynamic)
+   {
+      #if androidview
+      try
+      {
+         var setHaxeObject = nme.JNI.createStaticMethod("null.nullBase",
+              "setHaxeCallbackObject", "(Lorg/haxe/nme/HaxeObject;)V", true, true );
+         if (setHaxeObject!=null)
+            setHaxeObject([inObj]);
+      }
+      catch(e:Dynamic) {  }
+      #end
+   }
+
+   public static function getAsset(inName:String) : Dynamic
+   {
+      var i = Assets.info.get(inName);
+      if (i==null)
+         throw "Asset does not exist: " + inName;
+      var cached = i.getCache();
+      if (cached!=null)
+         return cached;
+      switch(i.type)
+      {
+         case BINARY, TEXT: return Assets.getBytes(inName);
+         case FONT: return Assets.getFont(inName);
+         case IMAGE: return Assets.getBitmapData(inName);
+         case MUSIC, SOUND: return Assets.getSound(inName);
+      }
+
+      throw "Unknown asset type: " + i.type;
+      return null;
+   }
+   
+   
+   public static function __init__ ()
+   {
+      #if neko
+      untyped $loader.path = $array ("@executable_path/", $loader.path);
+      #elseif cpp
+        
+      #end
+   }
+   
+   
+}
+

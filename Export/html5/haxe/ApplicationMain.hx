@@ -34,8 +34,24 @@ class ApplicationMain {
 		var types = [];
 		
 		
+		urls.push ("assets/serif.woff");
+		types.push (lime.Assets.AssetType.BINARY);
+		
+		
+		urls.push ("assets/serif.eot");
+		types.push (lime.Assets.AssetType.BINARY);
+		
+		
 		urls.push ("assets/haxe.png");
 		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/serif.svg");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
+		urls.push ("Katamotz Ikasi");
+		types.push (lime.Assets.AssetType.FONT);
 		
 		
 		
